@@ -1,4 +1,4 @@
-# Alias Generator Webextension
+# TeumessianFox
 
 **THIS EXTENSION IS STILL A WORK IN PROGRESS!**
 

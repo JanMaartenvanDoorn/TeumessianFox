@@ -1,0 +1,19 @@
+<div id="wrapper">
+  <mat-card class="example-card">
+    <div id="outer_div">
+      <mat-card-title-group id="alias_content">
+        <mat-card-title class="title-text">{{ alias.address }}</mat-card-title>
+        <mat-card-subtitle class="date-text">{{
+          alias.generated
+        }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </div>
+    <mat-card-actions id="actions">
+      <button mat-icon-button>
+        <mat-icon aria-hidden="false" (click)="copyAliasToClipboard()"
+          >content_copy</mat-icon
+        >
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

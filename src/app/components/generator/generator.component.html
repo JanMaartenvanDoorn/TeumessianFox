@@ -1,0 +1,23 @@
+<div id="slider_toggle">
+  <mat-slide-toggle (toggleChange)="toggleNerdMode()">
+    Include signature to verify with Laelaps
+  </mat-slide-toggle>
+</div>
+
+<div id="content">
+  <app-alias *ngFor="let alias of generated_aliasses" [alias]="alias">
+  </app-alias>
+</div>
+<div id="buttons">
+  <div id="mainBox" class="textBox">
+    <div id="mainMenuBar">
+      <app-generate-alias-button
+        color="green"
+        text="Generate Alias"
+        (btnClick)="updateAliasses()"
+      ></app-generate-alias-button>
+    </div>
+  </div>
+</div>
+
+<div></div>

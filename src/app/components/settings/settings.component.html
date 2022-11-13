@@ -1,0 +1,83 @@
+<div id="wrapper">
+  <form [formGroup]="settingsForm" (ngSubmit)="onSubmit(settingsForm.value)">
+    <mat-accordion class="example-headers-align" multi="true">
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Domain </mat-panel-title>
+          <mat-panel-description>
+            Domain for alias generation
+            <mat-icon>person</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{ domainPlaceholder }}</mat-label>
+          <input
+            type="domain"
+            matInput
+            formControlName="domain"
+            [errorStateMatcher]="matcher"
+            value="{{ domainPlaceholder }}"
+          />
+          <mat-error
+            *ngIf="
+              settingsForm.controls['domain'].hasError('domain') &&
+              !settingsForm.controls['domain'].hasError('required')
+            "
+          >
+            Please enter a valid domain
+          </mat-error>
+          <mat-error
+            *ngIf="settingsForm.controls['domain'].hasError('required')"
+          >
+            Domain is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Encryption private key</mat-panel-title>
+          <mat-panel-description>
+            Encryption key for advanced mode
+            <mat-icon>lock</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Encryption private key</mat-label>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            matInput
+            formControlName="encryption"
+            [errorStateMatcher]="matcher"
+            value="{{ encryptionPrivateKeyPlaceholder }}"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-hint>Alphanumeric string of 32 characters</mat-hint>
+          <mat-error
+            *ngIf="
+              settingsForm.controls['encryption'].hasError('key') &&
+              !settingsForm.controls['encryption'].hasError('required')
+            "
+          >
+            Please enter a key that contains no special characters
+          </mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div id="save_button">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="button"
+        [disabled]="!settingsForm.valid"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
